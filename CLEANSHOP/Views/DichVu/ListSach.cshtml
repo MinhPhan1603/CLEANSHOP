@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CLEANSHOP.Models.Product>
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>THÔNG TIN Sản Phẩm</h2>
+
+<p>
+
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th> Mã loại </th>
+        <th> Tên sách</th>
+        <th> Hình </th>
+        <th> Giá bán</th>
+        <th> Thời gian sử dụng </th>
+        <th> Mô tả </th>
+        <th> Số lượng tồn</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+            <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+            <td><img src="@item.Image" alt="hinh thumbnail " style="width:25%;height:25%; object-fit:cover;" /></td>
+            <td>@Html.DisplayFor(modelItem => item.Price)</td>
+            <td>@Html.DisplayFor(modelItem => item.Time)</td>
+            <td>@Html.DisplayFor(modelItem => item.Text)</td>
+            <td>@Html.DisplayFor(modelItem => item.Amount)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |  @Html.ActionLink("Detail", "Detail", new { id = item.Id }) |  @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+
+    }
+</table>

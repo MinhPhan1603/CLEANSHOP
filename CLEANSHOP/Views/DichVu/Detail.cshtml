@@ -1,0 +1,80 @@
+﻿
+@model CLEANSHOP.Models.Product
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail</h2>
+
+@*    <div class="navbar navbar-inverse " style="background:#ffffff">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="tops navbar-collapse collapse" style="background:#ffffff; ">
+                <ul class=" nav navbar-nav">
+                    <li>@Html.ActionLink("Clean", "Detail", new { Id = 1 })</li>
+                    <li>@Html.ActionLink("Fix", "Detail", new { Id = 2 })</li>
+                    <li>@Html.ActionLink("Vitamin Blog", "Index", "DichVu")</li>
+                    <li>@Html.ActionLink("Lien He", "About", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>*@
+
+
+<div>
+    <h4>Product</h4>
+    <hr />
+
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            <img src="@Model.Image" alt="Alternate Text" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "Index")
+</p>

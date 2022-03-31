@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="~/Content/fontawesome-free-6.1.1-web/css/all.css" rel="stylesheet" />
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background:#ffffff ; font-size : 24px larger; color : black; text-decoration : double ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("UTOPIA", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="tops navbar-collapse collapse" style="background:#ffffff; ">
+                <ul class=" nav navbar-nav">
+                    <li>@Html.ActionLink("Trang Chủ", "Index", "DichVu")</li>
+                    <li>@Html.ActionLink("Sản Phẩm", "Sanpham", "DichVu")</li>
+                    <li>@Html.ActionLink("UTOPIA Blog", "Index", "DichVu")</li>
+                    <li>@Html.ActionLink("Liên Hệ", "Nhom", "DichVu")</li>
+                    <li>@Html.ActionLink("Đăng nhập", "DangNhap", "NguoiDung")</li>
+                    <li>@Html.ActionLink("Đăng kí", "DangKy", "NguoiDung")</li>
+                    <li>@Html.ActionLink("Thông Tin Sản Phẩm", "ListSach", "DichVu")</li>
+                    <li>@Html.Partial("~/Views/GioHang/GioHangPartial.cshtml")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("upload", required: false)
+    <style>
+        .tops ul li {
+            color: blue;
+        }
+    </style>
+</body>
+</html>
