@@ -7,42 +7,117 @@
     <link href="~/Content/fontawesome-free-6.1.1-web/css/all.css" rel="stylesheet" />
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background:#ffffff ; font-size : 24px larger; color : black; text-decoration : double ">
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header" style=" width: 100px">
+                <img src="~/Content/Images/logocrep.png" alt="Alternate Text" style=" width: 70%; height: 50%; pa: 100px; z-index: 1; right: -200px; align-items: center; justify-content: center; margin-top: 6px; border-radius:50%" />
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("UTOPIA", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
             </div>
-            <div class="tops navbar-collapse collapse" style="background:#ffffff; ">
+            <a >
+
+                @Html.ActionLink("Vệ sinh chăm sóc giày AK2M", "Index", "DichVu", new { area = "" }, new { @class = "navbar-brand" , style = "font-weight:bold;" })
+            </a>
+            <div class="tops navbar-collapse collapse">
                 <ul class=" nav navbar-nav">
-                    <li>@Html.ActionLink("Trang Chủ", "Index", "DichVu")</li>
                     <li>@Html.ActionLink("Sản Phẩm", "Sanpham", "DichVu")</li>
-                    <li>@Html.ActionLink("UTOPIA Blog", "Index", "DichVu")</li>
                     <li>@Html.ActionLink("Liên Hệ", "Nhom", "DichVu")</li>
-                    <li>@Html.ActionLink("Đăng nhập", "DangNhap", "NguoiDung")</li>
-                    <li>@Html.ActionLink("Đăng kí", "DangKy", "NguoiDung")</li>
-                    <li>@Html.ActionLink("Thông Tin Sản Phẩm", "ListSach", "DichVu")</li>
+                    <li>
+
+
+
+                        @Html.ActionLink("Thông Tin Sản Phẩm", "ListSach", "DichVu")
+                    </li>
                     <li>@Html.Partial("~/Views/GioHang/GioHangPartial.cshtml")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>@Html.ActionLink("Đăng ký | Đăng nhập ", "DangNhap", "NguoiDung")</li>
+                    @*    <li>@Html.ActionLink("Đăng kí", "DangKy", "NguoiDung")</li>*@
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
+
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="bg-light text-center text-white">
+            <!-- Grid container -->
+            <div class="container p-4 pb-0">
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                    <!-- Facebook -->
+                    <a class="btn btn-primary btn-floating m-1"
+                       style="background-color: #3b5998;"
+                       href="#!"
+                       role="button">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <!-- Twitter -->
+                    <a class="btn btn-primary btn-floating m-1"
+                       style="background-color: #55acee;"
+                       href="#!"
+                       role="button">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+                    <!-- Google -->
+                    <a class="btn btn-primary btn-floating m-1"
+                       style="background-color: #dd4b39;"
+                       href="#!"
+                       role="button">
+                        <i class="fab fa-google"></i>
+                    </a>
+
+                    <!-- Instagram -->
+                    <a class="btn btn-primary btn-floating m-1"
+                       style="background-color: #ac2bac;"
+                       href="#!"
+                       role="button">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <!-- Linkedin -->
+                    <a class="btn btn-primary btn-floating m-1"
+                       style="background-color: #0082ca;"
+                       href="#!"
+                       role="button">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <!-- Github -->
+                    <a class="btn btn-primary btn-floating m-1"
+                       style="background-color: #333333;"
+                       href="#!"
+                       role="button">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </section>
+                <!-- Section: Social media -->
+            </div>
+            <!-- Grid container -->
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2020 Copyright:
+                <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+            </div>
+            <!-- Copyright -->
         </footer>
+
+
     </div>
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

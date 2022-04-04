@@ -2201,6 +2201,8 @@
     <Content Include="Content\Images\banchai2.jpg" />
     <Content Include="Content\Images\banchai3.1.jpg" />
     <Content Include="Content\Images\banchai3.jpg" />
+    <Content Include="Content\Images\banner2.jpg" />
+    <Content Include="Content\Images\banner3.jpg" />
     <Content Include="Content\Images\chai1.1.jpg" />
     <Content Include="Content\Images\chai1.2.jpeg" />
     <Content Include="Content\Images\chai1.png" />
@@ -2236,6 +2238,7 @@
     <Content Include="Content\Images\khanlau3.3.jpg" />
     <Content Include="Content\Images\khanlau3.jpg" />
     <Content Include="Content\Images\khoa ngu.jpg" />
+    <Content Include="Content\Images\logocrep.png" />
     <Content Include="Content\Images\minh phan.jpg" />
     <Content Include="Content\Images\minhtran.jpg" />
     <Content Include="Content\Images\siden1.1.jpg" />
@@ -2250,11 +2253,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Models\Mydata.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Mydata.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Content\fontawesome-free-6.1.1-web\less\brands.less" />
     <Content Include="Content\fontawesome-free-6.1.1-web\less\fontawesome.less" />
     <Content Include="Content\fontawesome-free-6.1.1-web\less\regular.less" />
@@ -2306,6 +2304,12 @@
     <Content Include="Content\fontawesome-free-6.1.1-web\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\fontawesome-free-6.1.1-web\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Content\fontawesome-free-6.1.1-web\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="Content\Images\banner4.webp" />
+    <Content Include="Models\Mydata.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Mydata.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Models\Mydata.dbml.layout">
       <DependentUpon>Mydata.dbml</DependentUpon>
     </None>
@@ -2349,6 +2353,8 @@
     <Content Include="Views\GioHang\XacNhanAdmin.cshtml" />
     <Content Include="Views\DichVu\Nhom.cshtml" />
     <Content Include="Views\DichVu\Sanpham.cshtml" />
+    <Content Include="Views\DichVu\LoaiSanPham.cshtml" />
+    <Content Include="Views\DichVu\SPTheoLoai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

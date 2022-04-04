@@ -1,4 +1,5 @@
 ﻿
+
 @model IEnumerable<CLEANSHOP.Models.Product>
 
 @{
@@ -8,59 +9,6 @@
 
 <h1>Sản Phẩm </h1>
 
-@*<div class="banner">
-
-        <div class="banner-left">
-            <p>Chuyên gia dụng cụ chăm sóc giày UTOPIA</p>
-            <img src="~/Content/Images/anh bia.jpg" alt="Alternate Text" style="width:15%; height:15%;" />
-        </div>
-
-        <img src="~/Content/Images/anh bia.jpg" alt="Alternate Text" style="width:50%; height:15%;" />
-    </div>
-    <h2>Sản phẩm</h2>*@
-
-
-
-@*<div class="Sp" style="  display: flex;   flex-wrap: wrap; ">
-
-        <p>  @Html.ActionLink("Create", "Create")</p>
-
-        @foreach (var item in Model)
-        {
-
-
-    <div class="items" style=" width: 25%; height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center; margin:20px; border-radius:20px;">
-
-        <img src="@item.Image" alt="Alternate Text" style=" width: 100%; height: 30%; object-fit: cover; " />
-        <p> @Html.ActionLink(@item.ProductName, "Index", "Index")</p>
-        <div class="content">
-
-            <h2>
-                @item.ProductName
-            </h2>
-            <h4>
-                @item.Detail
-            </h4>
-            <h4>
-                @item.Time
-            </h4>
-            <h4>
-                @item.Text
-            </h4>
-            <p><strong>Còn lại: </strong>@item.Amount</p>
-
-            <p>@item.Price</p>
-        </div>
-
-        <div class="DatMua">
-            <a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.Id, @strURL = Request.Url.ToString() })">Đặt mua</a>
-        </div>
-
-        @Html.ActionLink("Detail", "Detail", new { id = item.Id })
-
-    </div>
-
-        }*@
 
 @using (Html.BeginForm("Index", "DichVu", FormMethod.Get, new { @class = "form-inline" }))
 {
@@ -79,7 +27,7 @@
             {
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
-                        @*<h4 class="text-center"><span class="label label-info"></span></h4>*@
+                        <h4 class="text-center"><span class="label label-info">The Loai</span></h4>
                         <img src="@item.Image" class="img-responsive">
                         <div class="caption">
                             <div class="row">
@@ -121,21 +69,5 @@
 </style>
 
 
-@*    <style>
-            .items:hover {
-                transition: 0.5s ease-in-out;
-                box-shadow: 5px 5px 2px midnightblue;
-            }
 
-            .banner {
-                display: flex;
-                justify-content: center;
-                align-items: safe center;
-            }
 
-            .banner-left {
-                top: 0;
-            }
-        </style>
-    </div>
-*@

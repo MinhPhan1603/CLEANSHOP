@@ -56,6 +56,8 @@ namespace CLEANSHOP.Controllers
         var E_Text = collection["Text"];
     
         var E_Price = Convert.ToDecimal(collection["Price"]);
+            var E_Amount = Convert.ToInt32(collection["Amount"]);
+
            // var E_ngaycapnhat = Convert.ToDateTime(collection["ngaycapnhat"]);
            // var E_soluongton Convert.ToInt32(collection["soluongton"]);
             if (string.IsNullOrEmpty(E_ProductName))
@@ -72,9 +74,12 @@ namespace CLEANSHOP.Controllers
                     s.Text = E_Text.ToString();
 
                     s.Price =E_Price;
-                 //   s.ngaycapnhat = E_ngaycapnhat;
-                  //  s.soluongton = E_soluongton;
-                    data.Products.InsertOnSubmit(s);
+                    s.Amount = E_Amount;
+                    s.DisPrice = E_Price;
+                    s.DisCount = 1.0;
+                //   s.ngaycapnhat = E_ngaycapnhat;
+                //  s.soluongton = E_soluongton;
+                data.Products.InsertOnSubmit(s);
                     data.SubmitChanges();
                     return RedirectToAction("Index");
                 }
@@ -85,7 +90,13 @@ namespace CLEANSHOP.Controllers
         public ActionResult Edit(int id)
         {
              var E_Products = data.Products.First(m => m.Id == id);
-             return View(E_Products);
+            List<SelectListItem> discountList = new List<SelectListItem>();// set discount list
+            discountList.Add(new SelectListItem { Text = "No Discount", Value = "1" });
+            discountList.Add(new SelectListItem { Text = "10%", Value = "0,9" });
+            discountList.Add(new SelectListItem { Text = "20%", Value = "0,8" });
+            discountList.Add(new SelectListItem { Text = "50%", Value = "0,5" });
+            ViewBag.Discount = discountList;
+            return View(E_Products);
         }
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -98,9 +109,13 @@ namespace CLEANSHOP.Controllers
              var E_Text = collection["Text"];
             var E_Amount = Convert.ToInt32(collection["Amount"]);
             var E_Price = Convert.ToDecimal(collection["Price"]);
-             //var E_ngaycapnhat = Convert.ToDateTime(collection["ngaycatnhat"]);
-             //  var E_soluongton = Convert.ToInt32(collection["soluongton"]);
-              E_Products.Id = id;
+            var E_Discount = Convert.ToDouble(collection["DisCount"]);
+
+
+            var E_DisPrice = Convert.ToDecimal(collection["Price"]) * Convert.ToDecimal(collection["DisCount"]);
+            //var E_ngaycapnhat = Convert.ToDateTime(collection["ngaycatnhat"]);
+            //  var E_soluongton = Convert.ToInt32(collection["soluongton"]);
+            E_Products.Id = id;
              if (string.IsNullOrEmpty(E_ProductName))
              {
                ViewData["Error"] = "Don't empty!";
@@ -115,9 +130,12 @@ namespace CLEANSHOP.Controllers
               E_Products.Text = E_Text;
               E_Products.Amount = E_Amount;
                 E_Products.Price = E_Price;
+                E_Products.DisCount = E_Discount;
+
+                E_Products.DisPrice = E_DisPrice;
                 // E_Products.ngaycapnhat = E_ngaycapnhat;
-              // E_Products.soluongton = E_soluongton;
-                 UpdateModel(E_Products);
+                // E_Products.soluongton = E_soluongton;
+                UpdateModel(E_Products);
                 data.SubmitChanges();
                 return RedirectToAction("ListSach");
              }
@@ -176,6 +194,26 @@ namespace CLEANSHOP.Controllers
         {
             return PartialView();
         }
+
+
+            public ActionResult Category()
+            {
+                return PartialView();
+            }
+        public ActionResult LoaiSanPham()
+        {
+            var loaisanpham = from s in data.Types select s;
+            return PartialView(loaisanpham);
+        }
+
+
+        public ActionResult SPTheoLoai(int id)
+        {
+            var sptl = from ss in data.Products where ss.ID_Type == id select ss;
+            return PartialView(sptl);
+
+        }
+
     }
    
 

@@ -50,7 +50,7 @@
                 </td>
 
                 <td>
-                    <a href="@Url.Action("Detail","DichVu" , new {id=item.ID})">
+                    <a href="@Url.Action("Detail","DichVu" , new {@id=item.ID})">
                         Chi tiết
                     </a> | @Html.ActionLink("Xóa", "XoaGiohang", new { @id = item.ID })
                 </td>

@@ -42,6 +42,9 @@ namespace CLEANSHOP.Models
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
+    partial void InsertType(Type instance);
+    partial void UpdateType(Type instance);
+    partial void DeleteType(Type instance);
     #endregion
 		
 		public MydataDataContext() : 
@@ -103,6 +106,14 @@ namespace CLEANSHOP.Models
 			get
 			{
 				return this.GetTable<Product>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Type> Types
+		{
+			get
+			{
+				return this.GetTable<Type>();
 			}
 		}
 	}
@@ -878,7 +889,15 @@ namespace CLEANSHOP.Models
 		
 		private System.Nullable<int> _Amount;
 		
+		private System.Nullable<int> _ID_Type;
+		
+		private System.Nullable<decimal> _DisPrice;
+		
+		private System.Nullable<double> _DisCount;
+		
 		private EntityRef<CartDetail> _CartDetail;
+		
+		private EntityRef<Type> _Type;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -900,11 +919,18 @@ namespace CLEANSHOP.Models
     partial void OnImageChanged();
     partial void OnAmountChanging(System.Nullable<int> value);
     partial void OnAmountChanged();
+    partial void OnID_TypeChanging(System.Nullable<int> value);
+    partial void OnID_TypeChanged();
+    partial void OnDisPriceChanging(System.Nullable<decimal> value);
+    partial void OnDisPriceChanged();
+    partial void OnDisCountChanging(System.Nullable<double> value);
+    partial void OnDisCountChanged();
     #endregion
 		
 		public Product()
 		{
 			this._CartDetail = default(EntityRef<CartDetail>);
+			this._Type = default(EntityRef<Type>);
 			OnCreated();
 		}
 		
@@ -1068,6 +1094,70 @@ namespace CLEANSHOP.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Type", DbType="Int")]
+		public System.Nullable<int> ID_Type
+		{
+			get
+			{
+				return this._ID_Type;
+			}
+			set
+			{
+				if ((this._ID_Type != value))
+				{
+					if (this._Type.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnID_TypeChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Type = value;
+					this.SendPropertyChanged("ID_Type");
+					this.OnID_TypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisPrice", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> DisPrice
+		{
+			get
+			{
+				return this._DisPrice;
+			}
+			set
+			{
+				if ((this._DisPrice != value))
+				{
+					this.OnDisPriceChanging(value);
+					this.SendPropertyChanging();
+					this._DisPrice = value;
+					this.SendPropertyChanged("DisPrice");
+					this.OnDisPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisCount", DbType="Float")]
+		public System.Nullable<double> DisCount
+		{
+			get
+			{
+				return this._DisCount;
+			}
+			set
+			{
+				if ((this._DisCount != value))
+				{
+					this.OnDisCountChanging(value);
+					this.SendPropertyChanging();
+					this._DisCount = value;
+					this.SendPropertyChanged("DisCount");
+					this.OnDisCountChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_CartDetail", Storage="_CartDetail", ThisKey="Id", OtherKey="IdProduct", IsUnique=true, IsForeignKey=false)]
 		public CartDetail CartDetail
 		{
@@ -1097,6 +1187,40 @@ namespace CLEANSHOP.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Type_Product", Storage="_Type", ThisKey="ID_Type", OtherKey="ID_Type", IsForeignKey=true)]
+		public Type Type
+		{
+			get
+			{
+				return this._Type.Entity;
+			}
+			set
+			{
+				Type previousValue = this._Type.Entity;
+				if (((previousValue != value) 
+							|| (this._Type.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Type.Entity = null;
+						previousValue.Products.Remove(this);
+					}
+					this._Type.Entity = value;
+					if ((value != null))
+					{
+						value.Products.Add(this);
+						this._ID_Type = value.ID_Type;
+					}
+					else
+					{
+						this._ID_Type = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Type");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1115,6 +1239,120 @@ namespace CLEANSHOP.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Type")]
+	public partial class Type : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID_Type;
+		
+		private string _NameType;
+		
+		private EntitySet<Product> _Products;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_TypeChanging(int value);
+    partial void OnID_TypeChanged();
+    partial void OnNameTypeChanging(string value);
+    partial void OnNameTypeChanged();
+    #endregion
+		
+		public Type()
+		{
+			this._Products = new EntitySet<Product>(new Action<Product>(this.attach_Products), new Action<Product>(this.detach_Products));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Type", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID_Type
+		{
+			get
+			{
+				return this._ID_Type;
+			}
+			set
+			{
+				if ((this._ID_Type != value))
+				{
+					this.OnID_TypeChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Type = value;
+					this.SendPropertyChanged("ID_Type");
+					this.OnID_TypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NameType", DbType="NVarChar(30)")]
+		public string NameType
+		{
+			get
+			{
+				return this._NameType;
+			}
+			set
+			{
+				if ((this._NameType != value))
+				{
+					this.OnNameTypeChanging(value);
+					this.SendPropertyChanging();
+					this._NameType = value;
+					this.SendPropertyChanged("NameType");
+					this.OnNameTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Type_Product", Storage="_Products", ThisKey="ID_Type", OtherKey="ID_Type")]
+		public EntitySet<Product> Products
+		{
+			get
+			{
+				return this._Products;
+			}
+			set
+			{
+				this._Products.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Products(Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.Type = this;
+		}
+		
+		private void detach_Products(Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.Type = null;
 		}
 	}
 }

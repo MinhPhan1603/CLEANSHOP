@@ -1,80 +1,112 @@
-﻿
-@model CLEANSHOP.Models.Product
+﻿@model CLEANSHOP.Models.Product
 
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detail</h2>
 
-@*    <div class="navbar navbar-inverse " style="background:#ffffff">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="tops navbar-collapse collapse" style="background:#ffffff; ">
-                <ul class=" nav navbar-nav">
-                    <li>@Html.ActionLink("Clean", "Detail", new { Id = 1 })</li>
-                    <li>@Html.ActionLink("Fix", "Detail", new { Id = 2 })</li>
-                    <li>@Html.ActionLink("Vitamin Blog", "Index", "DichVu")</li>
-                    <li>@Html.ActionLink("Lien He", "About", "Home")</li>
-                </ul>
-            </div>
+
+
+
+<div class="detail">
+    <div class="big-img ">
+        <img src=" @Html.DisplayFor(model => model.Image)" alt="Hinh" />
+    </div>
+
+    <div class="box ">
+        <div class="row">
+            <h2> @Html.DisplayFor(model => model.ProductName)</h2>
         </div>
-    </div>*@
+
+        <hr class="colorgraph" />
+        <div>
 
 
-<div>
-    <h4>Product</h4>
-    <hr />
+            <span style=" font-size: 30px; color: crimson;">Giá tiền : @Html.DisplayFor(model => model.Price)  VND</span>
+            <div class="body">
+                <h3>Chi tiết :</h3>
+                <hr />
+                <h3>@Html.DisplayFor(model => model.Detail)</h3>
+            </div>
+            @*<div>
+                <h3>Ngay Cap Nhat:</h3>
+                <br />
+                <h3>@Html.DisplayFor(model => model.ngaycapnhat)</h3>
+            </div>*@
+            <div class="body">
 
-
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            <img src="@Model.Image" alt="Alternate Text" />
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductName)
-        </dd>
-
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Time)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Time)
-        </dd>
-
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-    </dl>
+                <h3>Số lượng :</h3>
+                <hr />
+                <h3>@Html.DisplayFor(model => model.Amount)</h3>
+            </div>
+           
+        </div>
+    </div>
 </div>
+
 <p>
    
     @Html.ActionLink("Back to List", "Index")
 </p>
+<style>
+    .detail {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 30px 0;
+    }
+
+        .detail .big-img {
+            max-width: 500px;
+            min-width: 290px;
+            overflow: hidden;
+            margin: 25px;
+        }
+
+    .big-img img {
+        width: 100%;
+        height: 100%;
+        max-height: 400px;
+        display: block;
+        object-fit: cover;
+    }
+
+    .detail .box {
+        max-width: 500px;
+        min-width: 290px;
+        margin: 25px;
+    }
+
+    .box .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+        .box .row h2 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+    .body {
+        display: flex;
+    }
+
+    .size {
+        justify-content: center;
+        align-items: center;
+    }
+
+        .size li {
+            font-size: 20px;
+            list-style: none;
+            margin: 5px;
+        }
+
+    .option_home {
+        display: flex;
+    }
+</style>
+
+

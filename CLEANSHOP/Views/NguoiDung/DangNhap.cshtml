@@ -7,41 +7,104 @@
 
 <h2>DangNhap</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Customer</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @*<div class="form-horizontal">
+            <h4>Customer</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.LoginName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LoginName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LoginName, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.LoginName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LoginName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LoginName, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
 
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Login" class="btn btn-default" />
+                </div>
             </div>
-        </div>
+        </div>*@
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="container">
+        
+        <hr>
+
+        <div class="row" >
+            <div class="col-sm-4" style="border:1px solid #808080; height:300px">
+                
+                <div class="card">
+                    <div class="card-body">
+                        <div style="display:flex; justify-content:space-between ; margin:20px">
+
+                            <a class="btn btn-info" href="@Url.Action("DangKy", "NguoiDung", new { @class = "form-control" })">Đăng ký</a>
+
+                            <h4 class="card-title mb-4 mt-1">Đăng Nhập</h4>
+                        </div>
+                        <div >
+                            <div class="form-group" style="padding:30px;">
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.LoginName, new { htmlAttributes = new { @class = "form-control", placeholder = "LoginName" } })
+                                    @Html.ValidationMessageFor(model => model.LoginName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+            <a class="float-right" href="#">Forgot?</a>
+            <label>Your password</label>
+            <input class="form-control" placeholder="******" type="password">
+        </div>*@ <!-- form-group// -->
+                            <!--div class="form-group">
+        <div class="checkbox">
+            <label> <input type="checkbox"> Save password </label>
+        </div>-->
+                            <!-- checkbox .// -->
+                            <!--</div>--> <!-- form-group// -->
+                            <div class="form-group" style="padding:30px;">
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", type = "password" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group" style="padding:30px;">
+                                <div class="col-md-offset-2 col-md-10" style=" margin: 0;">
+                                    <input type="submit" value="Đăng nhập " class="btn btn-info" style="width:100%;"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- card.// -->
+
+            </div>
+        </div>   <!-- col.// -->
     </div>
 }
+
+
+
+
+
+
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

@@ -46,7 +46,18 @@
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
       <Column Name="Image" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Amount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DisPrice" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="DisCount" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Association Name="Product_CartDetail" Member="CartDetail" ThisKey="Id" OtherKey="IdProduct" Type="CartDetail" Cardinality="One" />
+      <Association Name="Type_Product" Member="Type" ThisKey="ID_Type" OtherKey="ID_Type" Type="Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Type" Member="Types">
+    <Type Name="Type">
+      <Column Name="ID_Type" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NameType" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="Type_Product" Member="Products" ThisKey="ID_Type" OtherKey="ID_Type" Type="Product" />
     </Type>
   </Table>
 </Database>

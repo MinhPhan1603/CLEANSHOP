@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<CLEANSHOP.Models.Product>
 @{
     ViewBag.Title = "Liên hệ";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    @*    Layout = "~/Views/Shared/_Layout.cshtml";
+    *@}
 
 <h2>Sản phẩm được tạo bởi : </h2>
 
@@ -32,9 +32,9 @@
             <div class="img">
                 <img src="~/Content/Images/minhtran.jpg">
             </div>
-            <h2>Trần Bình Minh<br><span>Sinh viên tiêu biểu</span></h2>
+            <h2>Trần Bình Minh<br><span>Trưởng nhóm</span></h2>
             <p>
-                Học ngu hay sủa
+                Học càng nhiều, gánh càng nhiều
             </p>
             <span>
                 <ul>
@@ -54,7 +54,7 @@
             </div>
             <h2>Phan Công Minh<br><span>Sinh viên tiêu biểu</span></h2>
             <p>
-                Khôn nhất lớp
+                Mặc ai nói ngả nói nghiêng, mình học vẫn dốt đúng không cả nhà :D 
             </p>
             <span>
                 <ul>
@@ -76,7 +76,7 @@
             </div>
             <h2>Nguyễn Trần Tuấn Anh<br><span>Sinh viên tiêu biểu</span></h2>
             <p>
-                Ngu vc ko còn gì bàn
+               Thích thì học ko thích thì học
             </p>
             <span>
                 <ul>
@@ -96,7 +96,7 @@
             </div>
             <h2>Nguyễn Trần Đăng Khoa<br><span>Sinh viên tiêu biểu</span></h2>
             <p>
-                Huyện chúa
+                Sống ảo từng khoảng khắc
             </p>
             <span>
                 <ul>
@@ -110,6 +110,7 @@
         </div>
     </div>
 </div>
+
 <style>
     .Nhom {
         display: flex;
@@ -197,3 +198,6 @@
                         transform: rotateY(360deg);
                     }
 </style>
+<div>
+    @Html.ActionLink("Về trang chủ", "Index")
+</div>

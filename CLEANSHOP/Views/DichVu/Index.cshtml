@@ -8,95 +8,60 @@
 }
 
 
-@*<div class="banner">
-
-        <div class="banner-left">
-            <p>Chuyên gia dụng cụ chăm sóc giày UTOPIA</p>
-            <img src="~/Content/Images/anh bia.jpg" alt="Alternate Text" style="width:15%; height:15%;" />
-        </div>
-
-        <img src="~/Content/Images/anh bia.jpg" alt="Alternate Text" style="width:50%; height:15%;" />
-    </div>
-    <h2>Sản phẩm</h2>*@
 
 
-
-@*<div class="Sp" style="  display: flex;   flex-wrap: wrap; ">
-
-        <p>  @Html.ActionLink("Create", "Create")</p>
-
-        @foreach (var item in Model)
-        {
-
-
-    <div class="items" style=" width: 25%; height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center; margin:20px; border-radius:20px;">
-
-        <img src="@item.Image" alt="Alternate Text" style=" width: 100%; height: 30%; object-fit: cover; " />
-        <p> @Html.ActionLink(@item.ProductName, "Index", "Index")</p>
-        <div class="content">
-
-            <h2>
-                @item.ProductName
-            </h2>
-            <h4>
-                @item.Detail
-            </h4>
-            <h4>
-                @item.Time
-            </h4>
-            <h4>
-                @item.Text
-            </h4>
-            <p><strong>Còn lại: </strong>@item.Amount</p>
-
-            <p>@item.Price</p>
-        </div>
-
-        <div class="DatMua">
-            <a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.Id, @strURL = Request.Url.ToString() })">Đặt mua</a>
-        </div>
-
-        @Html.ActionLink("Detail", "Detail", new { id = item.Id })
-
+<div id="slider" class="left-to-right show-on-scroll">
+    <div class="aspect-ratio-169">
+        <img src="~/Content/images/anh bia.jpg" alt="1">
+        <img src="~/Content/images/combo2.1.jpg" alt="2">
+        <img src="~/Content/images/banner3.jpg" alt="3">
+        <img src="~/Content/images/combo3.jpg" alt="4">
+        <img src="~/Content/images/combo1.2.jpg" alt="5">
     </div>
 
-        }*@
-
-
-
-
-
-
+    <div class="dot-container" style="display:none;">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
 <div class="container">
 
     <div class="row">
-        <h1>BANNER CHƯA LÀM NÈ</h1>
+        
 
+        <h1 style="justify-content: center; display: flex;"> Sản phẩm vệ sinh chăm sóc giày</h1>
         @using (Html.BeginForm("Index", "DichVu", FormMethod.Get, new { @class = "form-inline" }))
         {
 
-            <div class="form-group">
+            <div class="form-group" style="justify-content: center; display: flex; margin:50px">
+
                 <input type="Text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sản phẩm cần tìm">
                 <input type="submit" class="btn btn-danger" value="Tìm sản phẩm...">
             </div>
         }
+    <div class="">
+        @Html.Action("LoaiSanPham", "DichVu")
+    </div>
 
 
-        <div class="col-md-12">
+        <div class="row"  style=" display: flex; justify-content: center; flex-wrap: wrap;">
             @foreach (var item in Model)
             {
                 <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <h4 class="text-center"><span class="label label-info">The Loai</span></h4>
-                        <img src="@item.Image" class="img-responsive">
-                        <div class="caption">
+                    <div class="thumbnail" >
+                        <h4 class="text-center"><span class="label label-info"></span></h4>
+                        <img src="@item.Image" class="img-responsive" style="height:200px">
+                        <div class="caption" >
                             <div class="row">
                                 <div class="col-md-6 col-xs-6">
                                     <h3>@item.ProductName</h3>
                                 </div>
                                 <div class="col-md-6 col-xs-6 price">
                                     <h3>
-                                        <label>@item.Price VND</label>
+                                        <label >@item.Price VND @* Giá sau khi giảm: @item.DisPrice*@</label>@*style="text-decoration-line:line-through"*@
                                     </h3>
                                 </div>
                             </div>
@@ -105,10 +70,11 @@
                                 <label>Số lượng :  @item.Amount </label>
                             </h3>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <a class="btn btn-primary btn-product" href="@Url.Action("Detail", "DichVu", new { @id = item.Id })">Detail</a>
-                                </div>
+                                
                                 <div class="panel-footer clearfix">
+                                    <div class="col-md-6">
+                                        <a class="btn btn-primary btn-product" href="@Url.Action("Detail", "DichVu", new { @id = item.Id })">Detail</a>
+                                    </div>
                                     <div class="pull-right">
                                         <div class="DatMua">
                                             @if (item.Amount > 0)
@@ -140,7 +106,7 @@
     </div>
 
 </div>
-<hr />
+
 
 <div>
     <div>
@@ -152,7 +118,7 @@
     </div>
 </div>
 <style>
-    . MenuTrang li {
+    .MenuTrang li {
         display: inline;
     }
 </style>
@@ -202,81 +168,145 @@
     .btn-product {
         width: 100%;
     }
+
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+
+    .thumbnail {
+        background: #c5e4e4;
+    }
+
+    .thumbnail:hover {
+        transform: scale(1.1);
+    }
+
+        .thumbnail:hover .clearfix {
+            display: block;
+        }
+
+    #slider {
+        padding-bottom: 30px;
+        border-bottom: 2px solid #000;
+        overflow: hidden;
+    }
+
+    .aspect-ratio-169 {
+        display: block;
+        position: relative;
+        margin-top: 20px;
+        padding-top: 46.25%;
+        transition: 0.3s;
+    }
+
+        .aspect-ratio-169 img {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            top: 0;
+            left: 0;
+        }
+
+    .dot-container {
+        position: relative;
+        height: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .dot {
+        height: 15px;
+        width: 15px;
+        background-color: #ccc;
+        border-radius: 50%;
+        margin-right: 12px;
+        cursor: pointer;
+    }
+
+        .dot.active {
+            background-color: #333;
+        }
+
+
+    .panel-default {
+        transition: 0.5s;
+    }
+
+        .panel-default:hover {
+            box-shadow: 5px 10px #BFC9D9;
+        }
+
+    .clearfix {
+        transition: 0.5s;
+        display: none;
+    }
+
+    .panel:hover {
+        transform: scale(1.1);
+    }
+
+        .panel:hover .clearfix {
+            display: block;
+        }
+
 </style>
 
 
-<!--footer-->
-<!--<div class="footer">
-    <div class="container">
-        <div class="row">-->
-            <!--phan down-->
-            <!--<div class="footer-col-1">
+    <script>
+        $(document).ready(function () {
+            var maxLength = 100;
+            $(".show-read-more").each(function () {
+                var myStr = $(this).text();
+                if ($.trim(myStr).length > maxLength) {
+                    var newStr = myStr.substring(0, maxLength);
+                    var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                    $(this).empty().html(newStr);
 
-                <h3>DOWNLOAD OUR APP</h3>
-                <p>DOWNLOAD APP FOR ANDRIOD AND IOS MOBILE PHONE</p>
-                <div class="app-logo">
-                    <img src="~/Content/Images/minh phan.jpg" />
-                    <img src="~/Content/Images/minh phan.jpg" />
-                </div>
+                    $(this).append(' <a href="javascript:void(0);" class="read-more">đọc tiếp...</a>');
 
-            </div>-->
-            <!--logo footer-->
-            <!--<div class="footer-col-2">
-                <img src="~/Content/Images/minh phan.jpg" />
-                <p>sdlkjjfkljhkldfahlakhsfdhdsgaafdslkhlkljadsjdfdsfshhvksjahdflksdaj</p>
-            </div>-->
-            <!--Useful Links-->
-            <!--<div class="footer-col-3">
-                <h3>Useful LINKS</h3>
-                <ul>
-                    <li>Coupons</li>
-                    <li>Blog Post</li>
-                    <li>Return Policy</li>
-                    <li>Become Affiliate</li>
-                </ul>
-            </div>-->
-            <!--follow us-->
-            <!--<div class="footer-col-4">
-                <h3>Follow us</h3>
-                <ul>
-                    <li>FB</li>
-                    <li>Youtube</li>
-                    <li>Instagram</li>
-                    <li>nimo</li>
-                </ul>
-
-            </div>-->
-            <!--chan footer-->
-            <!--<hr />
-            <p class="copyrighht">Copyright 2022 -Group </p>
-        </div>
-    </div>-->
-    <!--end footer-->
-
-
-
-
-
-
-
-
-
-
-    @*    <style>
-                .items:hover {
-                    transition: 0.5s ease-in-out;
-                    box-shadow: 5px 5px 2px midnightblue;
+                    $(this).append('<span class="more-text">' + removedStr +
+                        '</span>');
                 }
+            });
+            $(".read-more").click(function () {
+                $(this).siblings(".more-text").contents().unwrap();
+                $(this).remove();
+            });
+        });
 
-                .banner {
-                    display: flex;
-                    justify-content: center;
-                    align-items: safe center;
-                }
+        const imgPosition = document.querySelectorAll(".aspect-ratio-169 img")
+        const imgContainer = document.querySelector('.aspect-ratio-169')
+        const dotItem = document.querySelectorAll(".dot")
+        let imgNumber = imgPosition.length
+        let index = 0
+        // console.log(imgPosition)
+        imgPosition.forEach(function (image, index) {
+            image.style.left = index * 100 + "%"
+            dotItem[index].addEventListener("click", function () {
+                slider(index)
+            })
+        })
+        function imgSlide() {
+            index++;
+            if (index >= imgNumber) { index = 0 }
+            slider(index)
+        }
+        function slider(index) {
+            imgContainer.style.left = "-" + index * 100 + "%"
+            const dotActive = document.querySelector('.active')
+            dotActive.classList.remove("active")
+            dotItem[index].classList.add("active")
+        }
+        setInterval(imgSlide, 3000)
 
-                .banner-left {
-                    top: 0;
-                }
-            </style>
-        </div>
-    *@
+    </script>
+
+
+
+

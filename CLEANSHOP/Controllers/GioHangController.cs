@@ -104,7 +104,7 @@ namespace CLEANSHOP.Controllers
             Giohang sanpham = lstGiohang.SingleOrDefault(n => n.ID == id);
             if (sanpham != null)
             {
-                sanpham.iSoLuong = int.Parse(collection["txtSolg"].ToString());
+                sanpham.iSoLuong = int.Parse(collection["txtSoLg"].ToString());
             }
             return RedirectToAction("GioHang");
         }
