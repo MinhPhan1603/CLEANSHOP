@@ -41,14 +41,27 @@
                     <li>@Html.Partial("~/Views/GioHang/GioHangPartial.cshtml")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-
-                    <li>@Html.ActionLink("Đăng ký | Đăng nhập ", "DangNhap", "NguoiDung")</li>
+                    @if (Session["TaiKhoan"] != null)
+                    {
+                        <li><a href="#" style="margin-right:-25px;"><i class="fa-solid fa-user"></i> </a></li>
+                        <li>@Html.Partial("~/Views/GioHang/Ten.cshtml")</li>
+                        <li><a href="#" style="margin-right:-25px;"><i class="fa-solid fa-right-from-bracket"></i> </a></li>
+                        <li>@Html.ActionLink("Đăng Xuất", "DangXuat", "NguoiDung")</li>
+                    }
+                    else
+                    {
+                        <li><a href="#" style="margin-right:-25px;"><i class="fa-solid fa-user"></i> </a></li>
+                        <li>@Html.ActionLink("Đăng Ký", "Dangky", "NguoiDung")</li>
+                        <li><a href="#" style="margin-right:-25px;"><i class="fa-solid fa-right-to-bracket"></i></a></li>
+                        <li>@Html.ActionLink("Đăng Nhập", "DangNhap", "NguoiDung")</li>
+                    }
+                   @* <li>@Html.ActionLink("Đăng ký | Đăng nhập ", "DangNhap", "NguoiDung")</li>*@
                     @*    <li>@Html.ActionLink("Đăng kí", "DangKy", "NguoiDung")</li>*@
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content"style=" padding-top : 50px ; padding-bottom : 20px">
         @RenderBody()
 
         <hr />
@@ -56,7 +69,7 @@
             <!-- Grid container -->
             <div class="container p-4 pb-0">
                 <!-- Section: Social media -->
-                <section class="mb-4">
+                <section clsass="mb-4">
                     <!-- Facebook -->
                     <a class="btn btn-primary btn-floating m-1"
                        style="background-color: #3b5998;"

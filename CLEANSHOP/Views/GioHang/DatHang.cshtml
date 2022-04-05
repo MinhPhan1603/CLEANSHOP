@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.Image)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            @Html.DisplayNameFor(model => model.DisPrice)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.iSoLuong)
@@ -37,7 +37,7 @@
             <td> <img src="@item.Image" width="180" /> </td>
             @using (Html.BeginForm("CapnhatGiohang", "GioHang", new { @id = item.ID }))
             {
-                <td> @string.Format("{0:0,0}", item.Price) VNĐ </td>
+                <td> @string.Format("{0:0,0}", item.DisPrice) VNĐ </td>
                 <td>
                     <input type="number" min="1" name="txtSoLg"
                            value="@item.iSoLuong" />

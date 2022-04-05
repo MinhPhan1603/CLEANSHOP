@@ -66,7 +66,7 @@ namespace CLEANSHOP.Controllers
             List<Giohang> lstGiohang = Session["GioHang"] as List<Giohang>;
             if (lstGiohang != null)
             {
-                tt = lstGiohang.Sum(n => n.Price);
+                tt = lstGiohang.Sum(n => n.TotalPrice);
             }
             return tt;
         }
@@ -155,7 +155,7 @@ namespace CLEANSHOP.Controllers
                 ctdh.IdCart = dh.IdCart;
                 ctdh.IdProduct= item.ID;
                 ctdh.Amount = item.iSoLuong;
-                ctdh.Price = (decimal)item.Price;
+                ctdh.Price = (decimal)item.DisPrice;
                 s = data.Products.Single(n => n.Id  == item.ID);
                 s.Amount -= ctdh.Amount;
                 data.SubmitChanges();
@@ -176,5 +176,13 @@ namespace CLEANSHOP.Controllers
 
             return View();
         }
+        public ActionResult Ten()
+        {
+
+            return PartialView();
+
+
+        }
+
     }
 }

@@ -56,7 +56,7 @@ namespace CLEANSHOP.Controllers
         var E_Text = collection["Text"];
     
         var E_Price = Convert.ToDecimal(collection["Price"]);
-            var E_Amount = Convert.ToInt32(collection["Amount"]);
+        var E_Amount = Convert.ToInt32(collection["Amount"]);
 
            // var E_ngaycapnhat = Convert.ToDateTime(collection["ngaycapnhat"]);
            // var E_soluongton Convert.ToInt32(collection["soluongton"]);
@@ -72,7 +72,6 @@ namespace CLEANSHOP.Controllers
                     s.Detail = E_Detail.ToString();
                     s.Time = E_Time.ToString();
                     s.Text = E_Text.ToString();
-
                     s.Price =E_Price;
                     s.Amount = E_Amount;
                     s.DisPrice = E_Price;
@@ -90,12 +89,12 @@ namespace CLEANSHOP.Controllers
         public ActionResult Edit(int id)
         {
              var E_Products = data.Products.First(m => m.Id == id);
-            List<SelectListItem> discountList = new List<SelectListItem>();// set discount list
+        /*    List<SelectListItem> discountList = new List<SelectListItem>();// set discount list
             discountList.Add(new SelectListItem { Text = "No Discount", Value = "1" });
             discountList.Add(new SelectListItem { Text = "10%", Value = "0,9" });
             discountList.Add(new SelectListItem { Text = "20%", Value = "0,8" });
             discountList.Add(new SelectListItem { Text = "50%", Value = "0,5" });
-            ViewBag.Discount = discountList;
+            ViewBag.Discount = discountList;*/
             return View(E_Products);
         }
         [HttpPost]
@@ -110,8 +109,6 @@ namespace CLEANSHOP.Controllers
             var E_Amount = Convert.ToInt32(collection["Amount"]);
             var E_Price = Convert.ToDecimal(collection["Price"]);
             var E_Discount = Convert.ToDouble(collection["DisCount"]);
-
-
             var E_DisPrice = Convert.ToDecimal(collection["Price"]) * Convert.ToDecimal(collection["DisCount"]);
             //var E_ngaycapnhat = Convert.ToDateTime(collection["ngaycatnhat"]);
             //  var E_soluongton = Convert.ToInt32(collection["soluongton"]);
@@ -129,10 +126,9 @@ namespace CLEANSHOP.Controllers
               E_Products.Time = E_Time;
               E_Products.Text = E_Text;
               E_Products.Amount = E_Amount;
-                E_Products.Price = E_Price;
-                E_Products.DisCount = E_Discount;
-
-                E_Products.DisPrice = E_DisPrice;
+              E_Products.Price = E_Price;
+              E_Products.DisCount = E_Discount;
+              E_Products.DisPrice = E_DisPrice;
                 // E_Products.ngaycapnhat = E_ngaycapnhat;
                 // E_Products.soluongton = E_soluongton;
                 UpdateModel(E_Products);
@@ -141,6 +137,7 @@ namespace CLEANSHOP.Controllers
              }
                   return this.Edit(id);
         }
+
         public string ProcessUpload(HttpPostedFileBase file)
         {
             if (file == null)

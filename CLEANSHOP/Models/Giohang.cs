@@ -17,14 +17,14 @@ namespace CLEANSHOP.Models
         public string ProductName { get; set; }
         [Display(Name = "Ảnh bìa")]
         public string Image { get; set; }
-        [Display(Name = "Price")]
-        public Double Price { get; set; }            
+        [Display(Name = "Đơn Giá")] 
+        public Double DisPrice { get; set; }            
         [Display(Name = "Số lượng")]
         public int iSoLuong { get; set; }
         [Display(Name = "Thành tiền")]
         public Double TotalPrice
         {
-            get { return iSoLuong * Price; }
+            get { return iSoLuong * DisPrice; }
         }
         public Giohang(int  id)
         {
@@ -32,7 +32,7 @@ namespace CLEANSHOP.Models
              Product product = data.Products.Single(n => n.Id ==id);
             ProductName = product.ProductName;
             Image = product.Image;
-            Price = double.Parse(product.Price.ToString());
+            DisPrice = double.Parse(product.DisPrice.ToString());
             iSoLuong = 1;
         }
 

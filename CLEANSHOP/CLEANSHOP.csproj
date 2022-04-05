@@ -2355,6 +2355,7 @@
     <Content Include="Views\DichVu\Sanpham.cshtml" />
     <Content Include="Views\DichVu\LoaiSanPham.cshtml" />
     <Content Include="Views\DichVu\SPTheoLoai.cshtml" />
+    <Content Include="Views\GioHang\Ten.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,7 +8,9 @@
 }
 
 
-
+<div class="">
+    @Html.Action("LoaiSanPham", "DichVu")
+</div>
 
 <div id="slider" class="left-to-right show-on-scroll">
     <div class="aspect-ratio-169">
@@ -30,7 +32,7 @@
 <div class="container">
 
     <div class="row">
-        
+
 
         <h1 style="justify-content: center; display: flex;"> Sản phẩm vệ sinh chăm sóc giày</h1>
         @using (Html.BeginForm("Index", "DichVu", FormMethod.Get, new { @class = "form-inline" }))
@@ -42,35 +44,45 @@
                 <input type="submit" class="btn btn-danger" value="Tìm sản phẩm...">
             </div>
         }
-    <div class="">
-        @Html.Action("LoaiSanPham", "DichVu")
-    </div>
 
 
-        <div class="row"  style=" display: flex; justify-content: center; flex-wrap: wrap;">
+        <div class="row" style=" display: flex; justify-content: center; flex-wrap: wrap;">
             @foreach (var item in Model)
             {
                 <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail" >
+                    <div class="thumbnail">
                         <h4 class="text-center"><span class="label label-info"></span></h4>
                         <img src="@item.Image" class="img-responsive" style="height:200px">
-                        <div class="caption" >
+                        <div class="caption">
                             <div class="row">
-                                <div class="col-md-6 col-xs-6">
-                                    <h3>@item.ProductName</h3>
+                                <div class="text-center ">
+                                    <label style=" font-size : 20px"><strong>@item.ProductName</strong> </label>
                                 </div>
                                 <div class="col-md-6 col-xs-6 price">
                                     <h3>
-                                        <label >@item.Price VND @* Giá sau khi giảm: @item.DisPrice*@</label>@*style="text-decoration-line:line-through"*@
+                                        @if (item.Price == item.DisPrice)
+                                        {
+                                        <label > Giá : @item.DisPrice VND</label>
+                                        }
+                                        else
+                                        {
+                                            
+                                            <label style="text-decoration-line:line-through">@item.Price VND</label>
+                                            <label style="color : red">Giá sau khi giảm: @item.DisPrice VND </label>
+                                        }
+                                
+                                       
+
                                     </h3>
                                 </div>
                             </div>
                             <p>@item.Text</p>
-                            <h3>
-                                <label>Số lượng :  @item.Amount </label>
-                            </h3>
-                            <div class="row">
+                            <h4>
+                                <p>Số lượng :  @item.Amount </p>
                                 
+                            </h4>
+                            <div class="row">
+
                                 <div class="panel-footer clearfix">
                                     <div class="col-md-6">
                                         <a class="btn btn-primary btn-product" href="@Url.Action("Detail", "DichVu", new { @id = item.Id })">Detail</a>
@@ -84,7 +96,7 @@
                                                      {
                                                               @id = item.Id,
                                                                 @strURL = Request.Url.ToString()
-                                                        })">Đặt mua</a>
+                                                        })">Thêm vào giỏ</a>
                                             }
                                             else
                                             {
@@ -179,13 +191,13 @@
         background: #c5e4e4;
     }
 
-    .thumbnail:hover {
-        transform: scale(1.1);
-    }
-
-        .thumbnail:hover .clearfix {
-            display: block;
+        .thumbnail:hover {
+            transform: scale(1.1);
         }
+
+            .thumbnail:hover .clearfix {
+                display: block;
+            }
 
     #slider {
         padding-bottom: 30px;
@@ -254,58 +266,57 @@
         .panel:hover .clearfix {
             display: block;
         }
-
 </style>
 
 
-    <script>
-        $(document).ready(function () {
-            var maxLength = 100;
-            $(".show-read-more").each(function () {
-                var myStr = $(this).text();
-                if ($.trim(myStr).length > maxLength) {
-                    var newStr = myStr.substring(0, maxLength);
-                    var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
-                    $(this).empty().html(newStr);
+<script>
+    $(document).ready(function () {
+        var maxLength = 100;
+        $(".show-read-more").each(function () {
+            var myStr = $(this).text();
+            if ($.trim(myStr).length > maxLength) {
+                var newStr = myStr.substring(0, maxLength);
+                var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+                $(this).empty().html(newStr);
 
-                    $(this).append(' <a href="javascript:void(0);" class="read-more">đọc tiếp...</a>');
+                $(this).append(' <a href="javascript:void(0);" class="read-more">đọc tiếp...</a>');
 
-                    $(this).append('<span class="more-text">' + removedStr +
-                        '</span>');
-                }
-            });
-            $(".read-more").click(function () {
-                $(this).siblings(".more-text").contents().unwrap();
-                $(this).remove();
-            });
+                $(this).append('<span class="more-text">' + removedStr +
+                    '</span>');
+            }
         });
+        $(".read-more").click(function () {
+            $(this).siblings(".more-text").contents().unwrap();
+            $(this).remove();
+        });
+    });
 
-        const imgPosition = document.querySelectorAll(".aspect-ratio-169 img")
-        const imgContainer = document.querySelector('.aspect-ratio-169')
-        const dotItem = document.querySelectorAll(".dot")
-        let imgNumber = imgPosition.length
-        let index = 0
-        // console.log(imgPosition)
-        imgPosition.forEach(function (image, index) {
-            image.style.left = index * 100 + "%"
-            dotItem[index].addEventListener("click", function () {
-                slider(index)
-            })
-        })
-        function imgSlide() {
-            index++;
-            if (index >= imgNumber) { index = 0 }
+    const imgPosition = document.querySelectorAll(".aspect-ratio-169 img")
+    const imgContainer = document.querySelector('.aspect-ratio-169')
+    const dotItem = document.querySelectorAll(".dot")
+    let imgNumber = imgPosition.length
+    let index = 0
+    // console.log(imgPosition)
+    imgPosition.forEach(function (image, index) {
+        image.style.left = index * 100 + "%"
+        dotItem[index].addEventListener("click", function () {
             slider(index)
-        }
-        function slider(index) {
-            imgContainer.style.left = "-" + index * 100 + "%"
-            const dotActive = document.querySelector('.active')
-            dotActive.classList.remove("active")
-            dotItem[index].classList.add("active")
-        }
-        setInterval(imgSlide, 3000)
+        })
+    })
+    function imgSlide() {
+        index++;
+        if (index >= imgNumber) { index = 0 }
+        slider(index)
+    }
+    function slider(index) {
+        imgContainer.style.left = "-" + index * 100 + "%"
+        const dotActive = document.querySelector('.active')
+        dotActive.classList.remove("active")
+        dotItem[index].classList.add("active")
+    }
+    setInterval(imgSlide, 3000)
 
-    </script>
+</script>
 
 
 

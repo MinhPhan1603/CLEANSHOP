@@ -5,62 +5,80 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>GioHang</h2>
+<h2>AK2M | Giỏ Hàng (@ViewBag.Tongsoluongsanpham loại sản phẩm đang có trong giỏ hàng )</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.iSoLuong)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </th>
-        <th></th>
-    </tr>
+    <div style=" display: flex; flex-wrap: wrap; ">
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td> <img src="@item.Image" width="180" /> </td>
-            @using (Html.BeginForm("CapnhatGiohang", "GioHang", new
-            { @id = item.ID }))
-            {
-                <td> @String.Format("{0:0,0}", item.Price) VNĐ </td>
-                <td>
-                    <input type="number" min="1" name="txtSoLg"
-                           value="@item.iSoLuong" />
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalPrice)
-                </td>
+      <div style="display:flex; justify-content:space-between; width:100%; margin:20px; background: white;">
 
-                <td>
-                    <a href="@Url.Action("Detail","DichVu" , new {@id=item.ID})">
-                        Chi tiết
-                    </a> | @Html.ActionLink("Xóa", "XoaGiohang", new { @id = item.ID })
-                </td>
-                <td>
-                    <input type="submit" value="Cập nhật" class="btn btn-success" />
-                </td>
-            }
-        </tr>
+
+            <img src="@item.Image" width="180" />
+
+            <table class="table">
+                <tr>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DisPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.iSoLuong)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalPrice)
+                    </th>
+                    <th></th>
+                </tr>
+
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    @using (Html.BeginForm("CapnhatGiohang", "GioHang", new
+                    { @id = item.ID }))
+                    {
+                        <td> @String.Format("{0:0,0}", item.DisPrice) VNĐ </td>
+                        <td>
+                            <input type="number" min="1" name="txtSoLg"
+                                   value="@item.iSoLuong" style="border:none; width:50px;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalPrice)
+                        </td>
+
+                        <td>
+                            <a href="@Url.Action("Detail", "DichVu", new { @id = item.ID })">
+                                Chi tiết
+                            </a> | @Html.ActionLink("Xóa", "XoaGiohang", new { @id = item.ID })
+                        </td>
+                        <td>
+                            <input type="submit" value="Cập nhật" class="btn btn-success" />
+                        </td>
+                    }
+                </tr>
+                
+
+            </table>
+
+
+       </div>
     }
-    <tr style="font-weight: bold; text-align:left; color:red">
+    </div>
+    
+
+<div style="background:white; height:50px; text-align:right; width:100%; display:flex; justify-content:space-between;">
+    <h4 style="padding:10px;"> Số loại sản phẩm : @ViewBag.Tongsoluongsanpham </h4>
+    <h4 style="padding:10px;"> Số lượng sản phẩm: @ViewBag.Tongsoluong </h4>
+    <h4 style="padding:10px; color:red"> Tổng tiền: <em> @String.Format("{0:0,0}", @ViewBag.Tongtien)</em> VNĐ</h4>
+
+</div>
+    
+@*<tr style="font-weight: bold; text-align:left; color:red">
         <td colspan="2"> Số loại sản phẩm : @ViewBag.Tongsoluongsanpham </td>
         <td colspan="2"> Số lượng sản phẩm: @ViewBag.Tongsoluong </td>
         <td colspan="4">
@@ -71,10 +89,11 @@
         <td colspan="5">
             @Html.ActionLink("Xóa giỏ hàng", "XoaTatCaGioHang")
         </td>
-    </tr>
-    <tr style="font-weight: bold; color:yellow; text-align:right ">
-        <td colspan="5">
-            @Html.ActionLink("Đặt hàng", "Dathang", "GioHang")
-     </td>
-    </tr>
-</table>
+    </tr>*@
+<div style="margin:50px; display :flex; justify-content:center;  ">
+
+    <a class="btn btn-success" style="margin-right:40px;"
+       href=@Url.Action("Dathang", "GioHang")> ĐẶT HÀNG </a>
+    <a class="btn btn-danger"
+       href=@Url.Action("XoaTatCaGioHang", "GioHang")>Xóa tất cả</a>
+</div>

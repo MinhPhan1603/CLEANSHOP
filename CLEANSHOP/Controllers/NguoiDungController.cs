@@ -79,6 +79,11 @@ namespace CLEANSHOP.Controllers
             return RedirectToAction("DatHang", "Giohang");
 
         }
+        public ActionResult DangXuat()
+        {
+            Session.Clear();
+            return RedirectToAction("DangNhap");
+        }
 
     }
 }
