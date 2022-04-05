@@ -2240,11 +2240,11 @@
     <Content Include="Content\Images\khoa ngu.jpg" />
     <Content Include="Content\Images\logocrep.png" />
     <Content Include="Content\Images\minh phan.jpg" />
-    <Content Include="Content\Images\minhtran.jpg" />
     <Content Include="Content\Images\siden1.1.jpg" />
     <Content Include="Content\Images\siden1.2.jpg" />
     <Content Include="Content\Images\siden1.jpg" />
     <Content Include="Content\Images\sinau1.1.jpg" />
+    <Content Include="Content\Images\tranminh.jpg" />
     <Content Include="Content\Images\tuanhanh.jpg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />

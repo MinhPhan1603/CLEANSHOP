@@ -6,61 +6,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Sản Phẩm </h1>
-
-@*<div class="banner">
-
-        <div class="banner-left">
-            <p>Chuyên gia dụng cụ chăm sóc giày UTOPIA</p>
-            <img src="~/Content/Images/anh bia.jpg" alt="Alternate Text" style="width:15%; height:15%;" />
-        </div>
-
-        <img src="~/Content/Images/anh bia.jpg" alt="Alternate Text" style="width:50%; height:15%;" />
-    </div>
-    <h2>Sản phẩm</h2>*@
 
 
-
-@*<div class="Sp" style="  display: flex;   flex-wrap: wrap; ">
-
-        <p>  @Html.ActionLink("Create", "Create")</p>
-
-        @foreach (var item in Model)
-        {
+<h1> Sản Phẩm <div class="">
+    @Html.Action("LoaiSanPham", "DichVu")
+</div></h1>
 
 
-    <div class="items" style=" width: 25%; height: 400px; display: flex; flex-direction: column; justify-content: center; align-items: center; margin:20px; border-radius:20px;">
-
-        <img src="@item.Image" alt="Alternate Text" style=" width: 100%; height: 30%; object-fit: cover; " />
-        <p> @Html.ActionLink(@item.ProductName, "Index", "Index")</p>
-        <div class="content">
-
-            <h2>
-                @item.ProductName
-            </h2>
-            <h4>
-                @item.Detail
-            </h4>
-            <h4>
-                @item.Time
-            </h4>
-            <h4>
-                @item.Text
-            </h4>
-            <p><strong>Còn lại: </strong>@item.Amount</p>
-
-            <p>@item.Price</p>
-        </div>
-
-        <div class="DatMua">
-            <a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.Id, @strURL = Request.Url.ToString() })">Đặt mua</a>
-        </div>
-
-        @Html.ActionLink("Detail", "Detail", new { id = item.Id })
-
-    </div>
-
-        }*@
 
 @using (Html.BeginForm("Index", "DichVu", FormMethod.Get, new { @class = "form-inline" }))
 {
@@ -74,55 +26,74 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 ">
             @foreach (var item in Model)
             {
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <h4 class="text-center"><span class="label label-info"></span></h4>
-                    <img src="@item.Image" class="img-responsive" style="height:200px">
-                    <div class="caption">
-                        <div class="row">
-                            <div class="text-center ">
-                                <label style=" font-size : 20px"><strong>@item.ProductName</strong> </label>
-                            </div>
-                            <div class="col-md-6 col-xs-6 price">
-                                <h3>
-                                    @*    @if (item.Price == item.DisPrice)
-                            {
-                                   <label>@item.Price VND</label>
-                            }
-                            else
-                            {
-
-                                <label style="text-decoration-line:line-through">@item.Price VND</label>
-                                <label>Giá sau khi giảm: @item.DisPrice VND </label>
-                            }
-                                    *@
-
-
-                                </h3>
-                            </div>
-                        </div>
-                        <p>@item.Text</p>
-                        <h4>
-                            <p>Số lượng :  @item.Amount </p>
-                            <label style="color : red"> Giá : @item.Price VND</label>
-                        </h4>
-                     
+                <div class="col-sm-6 col-md-4"style="height: 500px">
+                    <div class="thumbnail">
+                        <h4 class="text-center"><span class="label label-info"></span></h4>
+                        <img src="@item.Image" class="img-responsive" style="height:200px">
+                        <div class="caption">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <a class="btn btn-primary btn-product" href="@Url.Action("Detail", "DichVu", new { @id = item.Id })"> Chi tiết</a>
+                                <div class="text-center ">
+                                    <label style=" font-size : 20px"><strong>@item.ProductName</strong> </label>
                                 </div>
-                                <div class="col-md-6">
-                                    <a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.Id, @strURL = Request.Url.ToString() })">Thêm vào giỏ </a>
+                                <div class="col-md-6 col-xs-6 price">
+                                    <h3>
+                                        @if (item.Price == item.DisPrice)
+                                        {
+                                            <label style=" font-size: 15px;"> Giá : @item.DisPrice VND</label>
+                                        }
+                                        else
+                                        {
+
+                                            <h3 style="text-decoration-line: line-through; font-size: 20px;"><sup>Giá gốc @item.Price VND</sup></h3>
+                                            <label style="color: red; ">Còn : @item.DisPrice VND </label>
+                                        }
+
+
+
+                                    </h3>
+                                </div>
+                            </div>
+                            <p>@item.Text</p>
+                            <h4>
+                                <p>Số lượng :  @item.Amount </p>
+
+                            </h4>
+                            <div class="row">
+
+                                <div class="panel-footer clearfix">
+                                    <div class="col-md-6">
+                                        <a class="btn btn-primary btn-product" href="@Url.Action("Detail", "DichVu", new { @id = item.Id })">Chi tiết</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="DatMua">
+                                            @if (item.Amount > 0)
+                                            {
+                                                <a class="btn btn-success"
+                                                   href="@Url.Action("ThemGioHang", "GioHang", new
+                                                     {
+                                                              @id = item.Id,
+                                                                @strURL = Request.Url.ToString()
+                                                        })">Thêm vào giỏ</a>
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-block ">
+                                                    Tạm Hết Hàng
+                                                </a>
+                                            }
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                }
-            </div>
+            }
+        </div>
 
     </div>
 
@@ -133,7 +104,13 @@
         width: 100%;
     }
     .thumbnail {
-        background: #c5e4e4;
+        background: #cccccc;
+    }
+    body {
+        background: rgb(240,240,244);
+        background: linear-gradient(90deg, rgba(240,240,244,1) 35%, rgba(248,249,249,1) 35%, rgba(240,245,246,1) 35%);
+        padding-top: 100px;
+        padding-bottom: 20px;
     }
 </style>
 
