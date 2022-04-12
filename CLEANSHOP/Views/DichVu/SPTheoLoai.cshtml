@@ -9,6 +9,9 @@
 
 <h1>Sản Phẩm </h1>
 
+<div class="">
+    @Html.Action("LoaiSanPham", "DichVu")
+</div>
 
 @using (Html.BeginForm("Index", "DichVu", FormMethod.Get, new { @class = "form-inline" }))
 {
@@ -22,34 +25,67 @@
 
     <div class="row">
 
-        <div class="col-md-12">
+        <div class="col-md-12 ">
             @foreach (var item in Model)
             {
-                <div class="col-sm-6 col-md-4">
+                <div class="col-sm-6 col-md-4" style="height: 500px">
                     <div class="thumbnail">
-                        <h4 class="text-center"><span class="label label-info">The Loai</span></h4>
-                        <img src="@item.Image" class="img-responsive">
+                        <h4 class="text-center"><span class="label label-info"></span></h4>
+                        <img src="@item.Image" class="img-responsive" style="height:200px">
                         <div class="caption">
                             <div class="row">
-                                <div class="col-md-6 col-xs-6">
-                                    <h3>@item.ProductName</h3>
+                                <div class="text-center ">
+                                    <label style=" font-size : 20px"><strong>@item.ProductName</strong> </label>
                                 </div>
                                 <div class="col-md-6 col-xs-6 price">
                                     <h3>
-                                        <label>@item.Price VND</label>
+                                        @if (item.Price == item.DisPrice)
+                                        {
+                                            <label style=" font-size: 15px;"> Giá : @item.DisPrice VND</label>
+                                        }
+                                        else
+                                        {
+
+                                            <h3 style="text-decoration-line: line-through; font-size: 20px;"><sup>Giá gốc @item.Price VND</sup></h3>
+                                            <label style="color: red; ">Còn : @item.DisPrice VND </label>
+                                        }
+
+
+
                                     </h3>
                                 </div>
                             </div>
                             <p>@item.Text</p>
-                            <h3>
-                                <label>Số lượng :  @item.Amount </label>
-                            </h3>
+                            <h4>
+                                <p>Số lượng :  @item.Amount </p>
+
+                            </h4>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <a class="btn btn-primary btn-product" href="@Url.Action("Detail", "DichVu", new { @id = item.Id })"> Detail</a>
-                                </div>
-                                <div class="col-md-6">
-                                    <a class="btn btn-success" href="@Url.Action("ThemGioHang", "GioHang", new { @id = item.Id, @strURL = Request.Url.ToString() })">Add</a>
+
+                                <div class="panel-footer clearfix">
+                                    <div class="col-md-6">
+                                        <a class="btn btn-primary btn-product" href="@Url.Action("Detail", "DichVu", new { @id = item.Id })">Chi tiết</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <div class="DatMua">
+                                            @if (item.Amount > 0)
+                                            {
+                                                <a class="btn btn-success"
+                                                   href="@Url.Action("ThemGioHang", "GioHang", new
+                                                     {
+                                                              @id = item.Id,
+                                                                @strURL = Request.Url.ToString()
+                                                        })">Thêm vào giỏ</a>
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-block ">
+                                                    Tạm Hết Hàng
+                                                </a>
+                                            }
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

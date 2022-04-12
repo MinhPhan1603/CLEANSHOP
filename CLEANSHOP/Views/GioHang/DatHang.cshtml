@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DatHang</h2>
+<h2>Đặt hàng</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -58,8 +56,32 @@
 <tr style="font-weight:bold; text-align:left; color:red">
     <td colspan="2"> Số loại sản phẩm: @ViewBag.Tongsoluongsanpham </td>
     <td colspan="2"> số lượng sản phẩm: @ViewBag.Tongsoluong </td>
-    <td colspan="4">Tổng tiền:</td>
-    <td> @String.Format("{0:0,0}", ViewBag.TongTien) vnd</td>
+    <td colspan="4">
+    
+        @if (ViewBag.TongTien <= 300000)
+        {
+            <p colspan="4">Tổng tiền:</p>
+            <p> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+        }
+        else
+        {
+            if (ViewBag.TongTien > 300000 && ViewBag.TongTien <= 500000)
+            {
+                <p colspan="4">Tổng tiền:</p>
+                <p style=" text-decoration-line:line-through"> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+                <p colspan="4">Giảm giá còn:</p>
+                <p> @String.Format("{0:0,0}", ViewBag.TienGiam1) vnd </p>
+            }
+            else
+            {
+                <p colspan="4">Tổng tiền:</p>
+                <p style=" text-decoration-line:line-through"> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+                <p colspan="4">Giảm giá còn:</p>
+                <p> @String.Format("{0:0,0}", ViewBag.TienGiam2) VND </p>
+            }
+
+        }
+    </td>
 </tr>
     <tr style="font-weight:bold; color:blue; text-align:right ">
         <td colspan-"5">
@@ -110,7 +132,10 @@
         <tr style="height:40px">
             <td></td>
             <td style="font-weight:bold">
-                <input type="submit" value="Xác nhận" class="btn btn-success" />
+                <a value="Xác nhận" class="btn btn-success" href="@Url.Action("sendPass","NguoiDung")">Thanh toán trực tiếp </a>
+
+
+                <a href="@Url.Action("Payment","momo")">Thanh toán bằng MOMO</a>
             </td>
         </tr>
     }

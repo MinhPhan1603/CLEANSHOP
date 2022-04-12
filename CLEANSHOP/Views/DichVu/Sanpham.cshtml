@@ -8,28 +8,32 @@
 
 
 
-<h1> Sản Phẩm <div class="">
-    @Html.Action("LoaiSanPham", "DichVu")
-</div></h1>
+<h1>
+    Sản Phẩm <div class="">
+        @Html.Action("LoaiSanPham", "DichVu")
+    </div>
+</h1>
 
 
 
+<h1 style="justify-content: center; display: flex;"> Sản phẩm vệ sinh chăm sóc giày</h1>
 @using (Html.BeginForm("Index", "DichVu", FormMethod.Get, new { @class = "form-inline" }))
 {
 
-    <div class="form-group">
+    <div class="form-group" style="justify-content: center; display: flex; margin:50px">
+
         <input type="Text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sản phẩm cần tìm">
-        <input type="submit" class="btn btn-danger" value="Tìm sản phẩm...">
+        <input type="submit" class="btn btn-danger" value="Tìm sản phẩm..." style="margin: 0 0 0 10px;">
     </div>
 }
-<div class="container">
 
-    <div class="row">
+<section class="features" id="features">
 
-        <div class="col-md-12 ">
-            @foreach (var item in Model)
-            {
-                <div class="col-sm-6 col-md-4"style="height: 500px">
+    <div class="box-container">
+
+        @foreach (var item in Model)
+        {
+            @*<div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
                         <h4 class="text-center"><span class="label label-info"></span></h4>
                         <img src="@item.Image" class="img-responsive" style="height:200px">
@@ -73,10 +77,10 @@
                                             {
                                                 <a class="btn btn-success"
                                                    href="@Url.Action("ThemGioHang", "GioHang", new
-                                                     {
-                                                              @id = item.Id,
-                                                                @strURL = Request.Url.ToString()
-                                                        })">Thêm vào giỏ</a>
+                                                             {
+                                                                      @id = item.Id,
+                                                                        @strURL = Request.Url.ToString()
+                                                                })">Thêm vào giỏ</a>
                                             }
                                             else
                                             {
@@ -91,45 +95,130 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            }
-        </div>
+                </div>*@
+            <div class="box">
+                <img src="@item.Image" class="img-responsive" style="height:200px">
+                <h3>
+                    @item.ProductName
+                </h3>
+                <p>
+                    @if (item.Price == item.DisPrice)
+                    {
+                        <label style=" font-size: 15px;"> Giá : @item.DisPrice VND</label>
+                    }
+                    else
+                    {
 
+                        <h3 style="text-decoration-line: line-through; font-size: 20px;"><sup>Giá gốc @item.Price VND</sup></h3>
+                        <label style="color: red; ">Còn : @item.DisPrice VND </label>
+                    }
+
+
+
+                </p>
+                <p>@item.Text</p>
+
+                <p>Số lượng :  @item.Amount </p>
+                <div class="col-md-6">
+                    <a class="btn btn-primary btn-product" href="@Url.Action("Detail", "DichVu", new { @id = item.Id })">Chi tiết</a>
+                    @if (item.Amount > 0)
+                    {
+                        <a class="btn btn-success" style="background : blue"
+                           href="@Url.Action("ThemGioHang", "GioHang", new
+                                                     {
+                                                              @id = item.Id,
+                                                                @strURL = Request.Url.ToString()
+                                                        })">Thêm vào giỏ</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-warning" style="background: orange">
+                            Tạm Hết Hàng
+                        </a>
+                    }
+                </div>
+
+
+
+            </div>
+
+
+        }
     </div>
 
-</div>
+</section>
+
 
 <style>
-    .btn-product {
-        width: 100%;
-    }
-    .thumbnail {
-        background: #cccccc;
-    }
-    body {
-        background: rgb(240,240,244);
-        background: linear-gradient(90deg, rgba(240,240,244,1) 35%, rgba(248,249,249,1) 35%, rgba(240,245,246,1) 35%);
-        padding-top: 100px;
-        padding-bottom: 20px;
+    .show-read-more .more-text {
+        display: none;
     }
 </style>
 
 
-@*    <style>
-            .items:hover {
-                transition: 0.5s ease-in-out;
-                box-shadow: 5px 5px 2px midnightblue;
-            }
+<div class="center">
+    @Html.Partial("~/Views/DichVu/Nhom.cshtml")
+</div>
+<style>
+    .btn-product {
+        width: 100%;
+    }
 
-            .banner {
-                display: flex;
-                justify-content: center;
-                align-items: safe center;
-            }
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
 
-            .banner-left {
-                top: 0;
-            }
-        </style>
-    </div>
-*@
+
+
+    #slider {
+        padding-bottom: 30px;
+        border-bottom: 2px solid #000;
+        overflow: hidden;
+    }
+
+    .aspect-ratio-169 {
+        display: block;
+        position: relative;
+        margin-top: 20px;
+        padding-top: 46.25%;
+        transition: 0.3s;
+    }
+
+        .aspect-ratio-169 img {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            top: 0;
+            left: 0;
+        }
+
+    .dot-container {
+        position: relative;
+        height: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #mau-nut a {
+        clear: both;
+        background-color: orange;
+        color: snow;
+    }
+
+
+
+    body {
+        background: rgb(231,95,219);
+        background: linear-gradient(0deg, rgba(231,95,219,1) 0%, rgba(90,212,232,1) 100%);
+        padding-top: 100px;
+        padding-bottom: 20px;
+    }
+    
+    
+    </style>

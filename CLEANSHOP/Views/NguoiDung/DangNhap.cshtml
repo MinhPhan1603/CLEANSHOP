@@ -47,12 +47,12 @@
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="container">
-        
+
         <hr>
 
-        <div class="row" >
+        <div class="row">
             <div class="col-sm-4" style="border:1px solid #808080; height:300px">
-                
+
                 <div class="card">
                     <div class="card-body">
                         <div style="display:flex; justify-content:space-between ; margin:20px">
@@ -61,33 +61,33 @@
 
                             <h4 class="card-title mb-4 mt-1">Đăng Nhập</h4>
                         </div>
-                        <div >
+                        <div>
                             <div class="form-group" style="padding:30px;">
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.LoginName, new { htmlAttributes = new { @class = "form-control", placeholder = "LoginName" } })
+                                    @Html.EditorFor(model => model.LoginName, new { htmlAttributes = new { @class = "form-control", placeholder = "Tên đăng nhập" } })
                                     @Html.ValidationMessageFor(model => model.LoginName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             @*<div class="form-group">
-            <a class="float-right" href="#">Forgot?</a>
-            <label>Your password</label>
-            <input class="form-control" placeholder="******" type="password">
-        </div>*@ <!-- form-group// -->
+                                    <a class="float-right" href="#">Forgot?</a>
+                                    <label>Your password</label>
+                                    <input class="form-control" placeholder="******" type="password">
+                                </div>*@ <!-- form-group// -->
                             <!--div class="form-group">
-        <div class="checkbox">
-            <label> <input type="checkbox"> Save password </label>
-        </div>-->
+                            <div class="checkbox">
+                                <label> <input type="checkbox"> Save password </label>
+                            </div>-->
                             <!-- checkbox .// -->
                             <!--</div>--> <!-- form-group// -->
                             <div class="form-group" style="padding:30px;">
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", type = "password" } })
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Mật Khẩu", type = "password" } })
                                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group" style="padding:30px;">
                                 <div class="col-md-offset-2 col-md-10" style=" margin: 0;">
-                                    <input type="submit" value="Đăng nhập " class="btn btn-info" style="width:100%;"/>
+                                    <input type="submit" value="Đăng nhập " class="btn btn-info" style="width:100%;" />
                                 </div>
                             </div>
                         </div>
@@ -103,9 +103,6 @@
 
 
 
-
-
-
-<div>
-    @Html.ActionLink("Về trang chủ", "Index")
-</div>
+<p>
+    @Html.ActionLink("Về trang chủ", "Index", "DichVu")
+</p>

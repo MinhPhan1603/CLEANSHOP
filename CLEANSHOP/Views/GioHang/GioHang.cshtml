@@ -44,7 +44,7 @@
                     {
                         <td> @String.Format("{0:0,0}", item.DisPrice) VNĐ </td>
                         <td>
-                            <input type="number" min="1" name="txtSoLg"
+                            <input type="number" min="1" max="@item.soluongton" name="txtSoLg"
                                    value="@item.iSoLuong" style="border:none; width:50px;" />
                         </td>
                         <td>
@@ -71,10 +71,36 @@
     </div>
     
 
-<div style="background:white; height:50px; text-align:right; width:100%; display:flex; justify-content:space-between;">
+<div style="background:white;  text-align:right; width:100%; display:flex; justify-content:space-between;">
     <h4 style="padding:10px;"> Số loại sản phẩm : @ViewBag.Tongsoluongsanpham </h4>
     <h4 style="padding:10px;"> Số lượng sản phẩm: @ViewBag.Tongsoluong </h4>
-    <h4 style="padding:10px; color:red"> Tổng tiền: <em> @String.Format("{0:0,0}", @ViewBag.Tongtien)</em> VNĐ</h4>
+    <h4 style="padding:10px; color:red">
+        <td>
+            @if (ViewBag.TongTien <= 300000)
+            {
+                <p colspan="4">Tổng tiền:</p>
+                <p> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+            }
+            else
+            {
+                if (ViewBag.TongTien > 300000 && ViewBag.TongTien <= 500000)
+                {
+                    <p colspan="4">Tổng tiền:</p>
+                    <p style=" text-decoration-line:line-through"> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+                    <p colspan="4">Giảm Giá:</p>
+                    <p> @String.Format("{0:0,0}", ViewBag.TienGiam1) VND </p>
+                }
+                else
+                {
+                    <p colspan="4">Tổng tiền:</p>
+                    <p style=" text-decoration-line:line-through"> @String.Format("{0:0,0}", ViewBag.Tongtien) VND</p>
+                    <p colspan="4">Giảm Giá:</p>
+                    <p> @String.Format("{0:0,0}", ViewBag.TienGiam2) VND </p>
+                }
+
+            }
+        </td>
+    </h4>
 
 </div>
     

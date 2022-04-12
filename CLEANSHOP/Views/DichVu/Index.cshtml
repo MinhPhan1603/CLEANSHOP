@@ -7,14 +7,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-                   <h1 style="color :sandybrown">AK2M - GÌ CŨNG CÓ, MUA HẾT Ở ĐÂY !!!</h1>
+@*<h1 style="color: navy">AK2M - GÌ CŨNG CÓ, MUA HẾT Ở ĐÂY !!!</h1>*@
 <div class="">
     @Html.Action("LoaiSanPham", "DichVu")
 </div>
 
 <div id="slider" class="left-to-right show-on-scroll">
     <div class="aspect-ratio-169">
-        <img src="~/Content/images/anh bia.jpg" alt="1">
+        <img src="~/Content/images/bannerr vip pro max.jpg" alt="1">
         <img src="~/Content/images/combo2.1.jpg" alt="2">
         <img src="~/Content/images/banner3.jpg" alt="3">
         <img src="~/Content/images/combo3.jpg" alt="4">
@@ -29,95 +29,78 @@
         <div class="dot"></div>
     </div>
 </div>
-<div class="container">
-
-    <div class="row">
 
 
-        <h1 style="justify-content: center; display: flex;"> Sản phẩm vệ sinh chăm sóc giày</h1>
-        @using (Html.BeginForm("Index", "DichVu", FormMethod.Get, new { @class = "form-inline" }))
+<h1 style="justify-content: center; display: flex;"> Sản phẩm vệ sinh chăm sóc giày</h1>
+@using (Html.BeginForm("Index", "DichVu", FormMethod.Get, new { @class = "form-inline" }))
+{
+
+    <div class="form-group" style="justify-content: center; display: flex; margin:50px">
+
+        <input type="Text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sản phẩm cần tìm">
+        <input type="submit" class="btn btn-danger" value="Tìm sản phẩm..." style="margin: 0 0 0 10px;">
+    </div>
+}
+
+<section class="features" id="features">
+
+    <div class="box-container">
+
+        @foreach (var item in Model)
         {
+            
+        <div class="box">
+            <img src="@item.Image" class="img-responsive" style="height:200px">
+            <h3>
+                @item.ProductName
+            </h3>
+            <p>
+                @if (item.Price == item.DisPrice)
+                {
+                    <label style=" font-size: 15px;"> Giá : @item.DisPrice VND</label>
+                }
+                else
+                {
 
-            <div class="form-group" style="justify-content: center; display: flex; margin:50px">
-
-                <input type="Text" class="form-control col-md-10" value="@ViewBag.Keyword" name="searchString" placeholder="Nhập tên sản phẩm cần tìm">
-                <input type="submit" class="btn btn-danger" value="Tìm sản phẩm...">
-            </div>
-        }
-
-
-        <div class="row" style=" display: flex; justify-content: center; flex-wrap: wrap;">
-            @foreach (var item in Model)
-            {
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <h4 class="text-center"><span class="label label-info"></span></h4>
-                        <img src="@item.Image" class="img-responsive" style="height:200px">
-                        <div class="caption">
-                            <div class="row">
-                                <div class="text-center ">
-                                    <label style=" font-size : 20px"><strong>@item.ProductName</strong> </label>
-                                </div>
-                                <div class="col-md-6 col-xs-6 price">
-                                    <h3>
-                                        @if (item.Price == item.DisPrice)
-                                        {
-                                            <label style=" font-size: 15px;"> Giá : @item.DisPrice VND</label>
-                                        }
-                                        else
-                                        {
-
-                                            <h3 style="text-decoration-line: line-through; font-size: 20px;"><sup>Giá gốc @item.Price VND</sup></h3>
-                                            <label style="color: red; ">Còn : @item.DisPrice VND </label>
-                                        }
+                    <h3 style="text-decoration-line: line-through; font-size: 20px;"><sup>Giá gốc @item.Price VND</sup></h3>
+                    <label style="color: red; ">Còn : @item.DisPrice VND </label>
+                }
 
 
 
-                                    </h3>
-                                </div>
-                            </div>
-                            <p>@item.Text</p>
-                            <h4>
-                                <p>Số lượng :  @item.Amount </p>
+            </p>
+            <p>@item.Text</p>
 
-                            </h4>
-                            <div class="row">
-
-                                <div class="panel-footer clearfix">
-                                    <div class="col-md-6">
-                                        <a class="btn btn-primary btn-product" href="@Url.Action("Detail", "DichVu", new { @id = item.Id })">Chi tiết</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <div class="DatMua">
-                                            @if (item.Amount > 0)
-                                            {
-                                                <a class="btn btn-success"
-                                                   href="@Url.Action("ThemGioHang", "GioHang", new
+            <p>Số lượng :  @item.Amount </p>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-product" href="@Url.Action("Detail", "DichVu", new { @id = item.Id })">Chi tiết</a>
+                @if (item.Amount > 0)
+                {
+                    <a class="btn btn-success"style="background : blue"
+                       href="@Url.Action("ThemGioHang", "GioHang", new
                                                      {
                                                               @id = item.Id,
                                                                 @strURL = Request.Url.ToString()
                                                         })">Thêm vào giỏ</a>
-                                            }
-                                            else
-                                            {
-                                                <a class="btn btn-block ">
-                                                    Tạm Hết Hàng
-                                                </a>
-                                            }
+                }
+                else
+                {
+                    <a class="btn btn-warning" style="background: orange">
+                        Tạm Hết Hàng
+                    </a>
+                }
+            </div>
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
+
+
         </div>
+            
 
+        }
     </div>
 
-</div>
+</section>
+
 
 
 <div>
@@ -144,6 +127,22 @@
         #mau-nut a:hover {
             background-color: darkcyan;
             color: snow;
+        }
+    .box-container .col-md-6 .btn {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: .8rem 3rem;
+        border-radius: 5rem;
+        background: var(--gradient);
+        font-size: 1.7rem;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+        transition: all .3s linear;
+    }
+
+        .box-container .col-md-6 .btn:hover {
+            transform: scale(1.1);
         }
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -187,17 +186,7 @@
         color: snow;
     }
 
-    .thumbnail {
-        background: #cccccc;
-    }
 
-        .thumbnail:hover {
-            transform: scale(1.1);
-        }
-
-            .thumbnail:hover .clearfix {
-                display: block;
-            }
 
     #slider {
         padding-bottom: 30px;
@@ -246,33 +235,22 @@
         }
 
 
-    .panel-default {
-        transition: 0.5s;
-    }
 
-        .panel-default:hover {
-            box-shadow: 5px 10px #BFC9D9;
-        }
-
-    .clearfix {
-        transition: 0.5s;
-        display: none;
-    }
-
-    .panel:hover {
-        transform: scale(1.1);
-    }
-
-        .panel:hover .clearfix {
-            display: block;
-        }
 
     body {
-        background: rgb(240,240,244);
-        background: linear-gradient(90deg, rgba(240,240,244,1) 35%, rgba(248,249,249,1) 35%, rgba(240,245,246,1) 35%);
+        background: rgb(231,95,219);
+        background: linear-gradient(0deg, rgba(231,95,219,1) 0%, rgba(90,212,232,1) 100%);
         padding-top: 100px;
         padding-bottom: 20px;
     }
+
+
+@*<!---------------------------------------------------------------------------------------------------*@
+
+
+
+
+
 </style>
 
 

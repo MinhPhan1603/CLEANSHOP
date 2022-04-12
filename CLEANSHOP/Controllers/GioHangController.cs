@@ -75,6 +75,8 @@ namespace CLEANSHOP.Controllers
             List<Giohang> lstGiohang = Laygiohang();
             ViewBag.Tongsoluong = TongSoluong();
             ViewBag.Tongtien = TongTien();
+            ViewBag.TienGiam1 = TongTien() * 0.7;
+            ViewBag.TienGiam2 = TongTien() * 0.5;
             ViewBag.Tongsoluongsanpham = TongSoLuongSanPham();
             return View(lstGiohang);
         }
@@ -131,6 +133,8 @@ namespace CLEANSHOP.Controllers
             List<Giohang> lstGiohang = Laygiohang();
             ViewBag.Tongsoluong = TongSoluong();
             ViewBag.Tongtien = TongTien();
+            ViewBag.TienGiam1 = TongTien() *0.7 ;
+            ViewBag.TienGiam2 = TongTien() * 0.5;
             ViewBag.Tongsoluongsanpham = TongSoLuongSanPham();
             return View(lstGiohang);
         }

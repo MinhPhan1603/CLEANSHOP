@@ -21,11 +21,14 @@ namespace CLEANSHOP.Models
         public Double DisPrice { get; set; }            
         [Display(Name = "Số lượng")]
         public int iSoLuong { get; set; }
+        public int soluongton { get; set; }
+
         [Display(Name = "Thành tiền")]
         public Double TotalPrice
         {
             get { return iSoLuong * DisPrice; }
         }
+
         public Giohang(int  id)
         {
              ID = id;
@@ -34,6 +37,7 @@ namespace CLEANSHOP.Models
             Image = product.Image;
             DisPrice = double.Parse(product.DisPrice.ToString());
             iSoLuong = 1;
+            soluongton = int.Parse(product.Amount.ToString());
         }
 
         
